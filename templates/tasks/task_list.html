@@ -1,5 +1,10 @@
-{% for task in tasks %}
-<a href="{% url 'task-detail' task.pk %}"><p>{{task.title}}</p></a>
-<p>{{task.priority}}</p>
-<p>{{task.status}}</p>
-{% endfor %}
+<form method="post">
+    {% csrf_token %}
+    {% for task in tasks %}
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <a href="{% url 'task-detail' task.pk %}"><p>{{ task.title }}</p></a>
+            <p>Priority: {{ task.priority }}</p>
+            <p>Status: {{ task.status }}</p>
+        </div>
+    {% endfor %}
+</form>
