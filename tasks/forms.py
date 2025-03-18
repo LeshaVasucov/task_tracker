@@ -9,3 +9,15 @@ class TaskForm(forms.ModelForm):
         widgets = {
             "due_date": forms.DateTimeInput(attrs={"type": "datetime-local"}),
         }
+
+
+class TaskFilterForm(forms.Form):
+    STATUS_CHOICES = [
+        ("todo", "To Do"),
+        ("in_progress", "In Progress"),
+        ("done", "Done"),
+        ("", "ALL")
+    ]
+
+    status = forms.ChoiceField(choices=STATUS_CHOICES, required=False,
+                               label="Статус")
