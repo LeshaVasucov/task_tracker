@@ -1,5 +1,5 @@
 from django import forms
-from tasks.models import Task
+from tasks.models import Task , Comment
 
 class TaskForm(forms.ModelForm):
     class Meta:
@@ -21,3 +21,13 @@ class TaskFilterForm(forms.Form):
 
     status = forms.ChoiceField(choices=STATUS_CHOICES, required=False,
                                label="Статус")
+    
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ["content", "media"]
+        widgets = {
+            "media": forms.FileInput()
+        }

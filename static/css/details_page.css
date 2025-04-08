@@ -1,0 +1,66 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 150vh;
+    margin: 0;
+}
+.container {
+    align-items : top ;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+}
+.back-link {
+    text-decoration: none;
+    color: #1976d2;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+.task-detail {
+    text-align: left;
+    margin-bottom: 20px;
+}
+.task-detail p {
+    margin: 5px 0;
+}
+.comments {
+    margin-top: 20px;
+    text-align: left;
+}
+.comment {
+    background: #e3f2fd;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.comment img, .comment video {
+    max-width: 100%;
+    border-radius: 5px;
+}
+.comment a {
+    color: #1976d2;
+    text-decoration: none;
+    font-size: 14px;
+}
+.comment-form {
+    margin-top: 20px;
+}
+button {
+    background: #1976d2;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background: #125a9e;
+}

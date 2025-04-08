@@ -1,6 +1,39 @@
+{% load custumtags %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'css/details_page.css' %}">
 <a href="/"><p>Назад</p></a>
-<p>Title : {{task.title}}</p>
-<p>Description : {{task.description}}</p>
-<p>Date : {{task.due_date}}</p>
-<p>Priority : {{task.priority}}</p>
-<p>Status : {{task.status}}</p>
+<div class="container">
+    <div class="task-detail">
+        <h2>{{ task.title }} </h2>
+        <p><strong>Описание:</strong> {{ task.description }}</p>
+        <p><strong>Дата:</strong> {{ task.due_date }}</p>
+        <p><strong>Приоритет:</strong> {{ task.priority }}</p>
+        <p><strong>Статус:</strong> {{ task.status }}</p>
+    </div>
+</div>
+<div>
+    {% for comment in task.comments.all %}
+    <p> {{ comment.content }}</p>
+    {% if comment.media %}
+        {% if comment.media.url|endswith:".jpg" or comment.media.url|endswith:".png" or comment.media.url|endswith:".jpeg" %}
+            <img src="{{ comment.media.url }}" style="max-width: 30%;">
+        {% elif comment.media.url|endswith:".mp4"  %}
+            <video width="640", height="320", controls="True">
+                <source src="{{ comment.media.url }}" type="video/mp4">
+            </video>
+        {% else %}
+            <a href="{{ comment.media.url }}">Завантажити  Файл </a>
+        {% endif %}
+    {% endif %}
+    <a href="{% url 'comment-update' comment.pk %}"> edit comment</a>
+    {% endfor %}
+</div>
+
+</div>
+    <h3> Додати комментар</h3>
+    <form action="{% url 'task-detail' task.id %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <button type="submit">відправити</button>
+    </form>
+</div>

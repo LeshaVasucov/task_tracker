@@ -1,15 +1,30 @@
-
-
-<form method="get">
-    {{ form.status.label_tag }}
-    {{ form.status }}
-    <button type="submit">filter</button>
-</form>
-
-{% for task in tasks %}
-    <div style="display: flex; align-items: center; gap: 10px;">
-        <a href="{% url 'task-detail' task.pk %}"><p>{{ task.title }}</p></a>
-        <p>Priority: {{ task.priority }}</p>
-        <p>Status: {{ task.status }}</p>
+{% extends 'base.html' %}
+{% block content %}
+<html lang="ru">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/main_page.css' %}">
+    <title>Список заданий</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div class="task-list">
+        <h2>Список заданий</h2>
+        <form method="get">
+            {{ form.status.label_tag }}
+            {{ form.status }}
+            <button type="submit">Фильтр</button>
+        </form>
+        {% for task in tasks %}
+            <div class="task">
+                <a href="{% url 'task-detail' task.pk %}">{{ task.title }}</a>
+                <p>Приоритет: {{ task.priority }}</p>
+                <p>Статус: {{ task.status }}</p>
+            </div>
+        {% endfor %}
     </div>
-{% endfor %}
+</body>
+</html>
+{% endblock %}
